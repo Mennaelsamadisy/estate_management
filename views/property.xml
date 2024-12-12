@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+<record id="prop_view_tree" model="ir.ui.view">
+    <field name="name">prop.view.tree</field>
+    <field name="model">prop</field>
+    <field name="arch" type="xml">
+        <tree string="prop_tree">
+            <field name="name"/>
+            <field name="type"/>
+        </tree>
+    </field>
+</record>
+<record id="prop_view_form" model="ir.ui.view">
+    <field name="name">prop.view.form</field>
+    <field name="model">prop</field>
+    <field name="arch" type="xml">
+        <form string="prop_form">
+            <sheet>
+              <group>
+                <group>
+                    <field name="name" placeholder="Enter name of property"/>
+                    <field name="address"/>
+                    <field name="type" placeholder=" (e.g., residential, commercial, land)"/>
+                    <field name="size"/>
+                    <field name="size_unit" string="Size Unit"/>
+                    <field name="price" placeholder="Selling or rental price(per year)"/>
+                    <field name="description" placeholder="Describe property"/>
+                </group>
+                <group>
+                    <field name='bedrooms'/>
+                    <field name='facades'/>
+                    <field name='garden'/>
+                    <field name='garden_orientation'/>
+                    <field name='garden_area'/>
+                    <field name='living_area'/>
+                    <field name='garage'/>
+                </group>
+              </group>
+                <notebook>
+                    <page string="Ownership Details">
+                        <field name="owner_rel_ids" >
+                            <tree>
+                                <field name="owner_id" string="Owner ID" />
+                                <field name="ownership_percentage" string="Ownership (%)" />
+                            </tree>
+                        </field>
+                    </page>
+
+                    <page string="Tenants">
+                            <field name="tenant_rel_id" context="{'default_property_id': active_id}">
+
+                                <kanban>
+                                    <field name="tenant_id"/>
+                                    <field name="lease_startdate"/>
+                                    <field name="lease_enddate"/>
+                                    <field name="monthly_rent"/>
+                                    <templates>
+                                        <t t-name="kanban-box">
+                                            <div class="o_kanban_record">
+                                                <div class="o_kanban_primary_bottom">
+                                                    <strong>
+                                                        <field name="tenant_id" options="{'widget': 'many2one'}"/>
+                                                    </strong>
+                                                </div>
+                                                <div>
+                                                    <span>Lease Start: <field name="lease_startdate"/></span>
+                                                </div>
+                                                <div>
+                                                    <span>Lease End: <field name="lease_enddate"/></span>
+                                                </div>
+                                                <div>
+                                                    <span>Rent: <field name="monthly_rent" widget="monetary" options="{'currency_field': 'currency_id'}"/></span>
+                                                </div>
+                                            </div>
+                                        </t>
+                                    </templates>
+                                </kanban>
+                            </field>
+                        </page>
+                </notebook>
+            </sheet>
+        </form>
+    </field>
+</record>
+<record id="view_transaction_tree" model="ir.ui.view">
+    <field name="name">transc.view.tree</field>
+    <field name="model">transc</field>
+    <field name="arch" type="xml">
+        <tree string="Transactions">
+            <field name="transc_date"/>
+            <field name="amount"/>
+            <field name="property_id"/>
+        </tree>
+    </field>
+</record>
+<record id="transaction_form_view" model="ir.ui.view">
+        <field name="name">Transactions form</field>
+        <field name="model">transc</field>
+        <field name="arch" type="xml">
+            <form string="Transaction">
+                <sheet>
+                    <group>
+                        <field name="transc_date"/>
+                        <field name="amount"/>
+                        <field name="property_id"/>
+                        <field name="parties_involved"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+<record id="prop_action" model="ir.actions.act_window">
+    <field name="name">Properties form</field>
+    <field name="type">ir.actions.act_window</field>
+    <field name="res_model">prop</field>
+    <field name="view_mode">tree,form,kanban</field>
+</record>
+<record id="action_transaction" model="ir.actions.act_window">
+    <field name="name">Transactions</field>
+    <field name="type">ir.actions.act_window</field>
+    <field name="res_model">transc</field>
+    <field name="view_mode">tree,form</field>
+</record>
+
+    </odoo>

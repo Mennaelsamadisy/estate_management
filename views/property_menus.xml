@@ -1,0 +1,11 @@
+<odoo>
+    <menuitem id="estate_management" name="Estate Management">
+        <menuitem id="props" name="Properties">
+
+            <menuitem id="test1" action="prop_action"/>
+            <menuitem id="trans" action="action_transaction" name="Transactions History"/>
+
+        </menuitem>
+
+    </menuitem>
+</odoo>

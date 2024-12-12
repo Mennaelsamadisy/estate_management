@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+estate_management.access_prop,access_prop,estate_management.model_prop,base.group_user,1,1,1,1
+estate_management.access_ownership,access_ownership,estate_management.model_ownership,base.group_user,1,1,1,1
+estate_management.access_owner,access_owner,estate_management.model_owner,base.group_user,1,1,1,1
+estate_management.access_tenant,access_tenant,estate_management.model_tenant,base.group_user,1,1,1,1
+estate_management.access_tenantship,access_tenantship,estate_management.model_tenantship,base.group_user,1,1,1,1
